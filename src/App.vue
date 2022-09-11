@@ -1,11 +1,16 @@
 <template>
   <div class="app">
-    <h1>PokeDex</h1>
+     <div v-for="(poke,index) in pokemons " :key="index">
+      <Pokemon :name="poke.name" :url="poke.url" :num="index+1"/>
+    
+
+     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Pokemon from './components/Pokemon';
 
 export default{
   name:'App',
@@ -15,13 +20,17 @@ export default{
     }
   },
   created:function () {
-    axios.get("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0").then(dados=>{
+    axios.get("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0").then(dados=>{
       
       this.pokemons=dados.data.results;
     }).catch(err=>{
       console.log(err)
     })
+  },
+  components:{
+    Pokemon
   }
+  
 }
 
 </script>
