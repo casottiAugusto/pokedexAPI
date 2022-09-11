@@ -4,7 +4,7 @@
     <div class="card">
       <div class="card-image">
         <figure>
-          <img :src="pokemons.front" alt="Placeholder image" />
+          <img :src="correntIMG" alt="Placeholder image" />
         </figure>
       </div>
       <div class="media-content">
@@ -13,6 +13,7 @@
       </div>
       <div class="card-content">
         <div class="content">
+          <button class="button is-small is-fullwidth" @click="mudarSprite">Mudar Sprite</button>
         
 
           <br />
@@ -30,11 +31,15 @@ export default {
       this.pokemons.type = res.data.types[0].type.name;
       this.pokemons.front = res.data.sprites.front_default;
       this.pokemons.back = res.data.sprites.back_default;
+      this.correntIMG=this.pokemons.front;
+      
       
     });
   },
   data() {
     return {
+      isFront:true,
+      correntIMG:'',
       pokemons: {
         type: "",
         front: "",
@@ -52,6 +57,18 @@ export default {
       var newName = value[0].toUpperCase() + value.slice(1);
       return newName;
     },
+    mudarSprite:function () {
+      if (this.isFront) {
+        this.isFront=false;
+        this.correntIMG=this.pokemons.back;
+        
+      }else{
+        this.isFront=true;
+        this.correntIMG=this.pokemons.front;
+
+      }
+      
+    }
   },
 };
 </script>
