@@ -5,9 +5,23 @@
 </template>
 
 <script>
-//import axios from 'axios';
+import axios from 'axios';
+
 export default{
-  name:'App'
+  name:'App',
+  data(){
+    return{
+      pokemons:[]
+    }
+  },
+  created:function () {
+    axios.get("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0").then(dados=>{
+      
+      this.pokemons=dados.data.results;
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
 }
 
 </script>
