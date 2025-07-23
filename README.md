@@ -56,4 +56,4 @@ Para personalizar a configuração do projeto, consulte a [referência oficial d
 
 ## Licença
 
-Este projeto está sob
+Este projeto está sob licença MIT.
